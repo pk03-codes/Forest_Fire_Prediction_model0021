@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forest Fire Prediction</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: radial-gradient(circle at center, #1a2a2f, #000);
+    overflow: hidden;
+    color: white;
+}
+
+/* 🔥 FIRE */
+.fire {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.flame {
+    width: 30px;
+    height: 80px;
+    background: radial-gradient(circle, yellow, orange, red);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    animation: flicker 1s infinite alternate;
+}
+
+.flame:nth-child(1){left:-30px;}
+.flame:nth-child(2){left:0;}
+.flame:nth-child(3){left:30px;}
+
+@keyframes flicker {
+    0% {transform: scaleY(1); opacity: 0.7;}
+    100% {transform: scaleY(1.5); opacity: 1;}
+}
+
+/* 🌫 SMOKE */
+.smoke span {
+    position: absolute;
+    bottom: 80px;
+    width: 20px;
+    height: 20px;
+    background: gray;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: smokeUp 5s infinite;
+}
+
+@keyframes smokeUp {
+    0% {transform: translateY(0) scale(1);}
+    100% {transform: translateY(-200px) scale(2); opacity: 0;}
+}
+
+/* ✨ PARTICLES */
+.particles span {
+    position: absolute;
+    background: orange;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: float 6s infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-300px);}
+}
+
+/* 📦 CARD */
+.container {
+    position: relative;
+    z-index: 10;
+    width: 420px;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.95);
+    padding: 25px;
+    border-radius: 15px;
+    color: black;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e64a19;
+}
+
+/* ⏳ LOADING */
+.loader {
+    display: none;
+    text-align: center;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔥 Fire -->
+<div class="fire">
+    <div class="flame"></div>
+    <div class="flame"></div>
+    <div class="flame"></div>
+</div>
+
+<!-- 🌫 Smoke -->
+<div class="smoke">
+    <span style="left:48%"></span>
+    <span style="left:50%"></span>
+    <span style="left:52%"></span>
+</div>
+
+<!-- ✨ Particles -->
+<div class="particles">
+    <span style="left:20%"></span>
+    <span style="left:40%"></span>
+    <span style="left:60%"></span>
+</div>
+
+<!-- 📦 Form -->
+<div class="container">
+<h1>🔥 Fire Risk Prediction</h1>
+
+<form action="{{url_for('predict_datapoint')}}" method="post" onsubmit="showLoader()">
+
+<input type="number" name="Temperature" placeholder="Temperature" required>
+<input type="number" name="RH" placeholder="Humidity" required>
+<input type="number" name="WS" placeholder="Wind Speed" required>
+<input type="number" name="Rain" placeholder="Rain" required>
+<input type="number" name="FFMC" placeholder="FFMC" required>
+<input type="number" name="DMC" placeholder="DMC" required>
+<input type="number" name="ISI" placeholder="ISI" required>
+
+<!-- DROPDOWN -->
+<select name="Classes">
+<option value="1">Fire</option>
+<option value="0">Not Fire</option>
+</select>
+
+<select name="Region">
+<option value="1">Region 1</option>
+<option value="2">Region 2</option>
+</select>
+
+<button type="submit">Predict</button>
+
+<div class="loader" id="loader">⏳ Predicting...</div>
+
+</form>
+</div>
+
+<script>
+function showLoader(){
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+</body>
+</html>
