@@ -71,7 +71,3 @@ Users enter environmental conditions.
 Displays predicted Fire Weather Index.
 
 ---
-
-{
-  "data": [Temperature, RH, WS, Rain, FFMC, DMC, ISI, Classes, Region]
-}
