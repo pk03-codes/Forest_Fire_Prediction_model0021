@@ -70,4 +70,13 @@ Users enter environmental conditions.
 ### 🔹 Output Page
 Displays predicted Fire Weather Index.
 
+## ▶️ How to Run the Application
+
+Follow these steps to run the project locally:
+
+### 🔹 Step 1: Clone the Repository
+```bash
+git clone https://github.com/pk03-codes/Forest_Fire_Prediction_model0021.git
+cd Forest_Fire_Prediction_model0021
+
 ---
