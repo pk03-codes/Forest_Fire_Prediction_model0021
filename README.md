@@ -14,7 +14,6 @@ The goal is to help identify fire risk based on environmental conditions such as
 - 🔹 Multiple ML Models (Linear, Ridge, Lasso)
 - 🔹 Model Evaluation (R², MAE)
 - 🔹 Flask Web Application
-- 🔹 REST API (`/predict_api`)
 - 🔹 Animated UI (Fire, Smoke, Particles)
 - 🔹 Real-time Prediction
 
